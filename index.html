@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <title>밤의 서가 — 선택으로 여는 이야기</title>
+  <style>
+    :root{color-scheme:dark;--ink:#f1eadc;--muted:#aaa59c;--gold:#d8bd88;--line:#ffffff20;--panel:#191a20;--serif:Georgia,"Noto Serif KR",serif;--sans:Arial,"Noto Sans KR",sans-serif}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#11131a;color:var(--ink);font-family:var(--sans);line-height:1.6}
+    a{color:inherit}
+    .site-header{height:78px;display:flex;align-items:center;justify-content:space-between;max-width:1180px;margin:auto;padding:0 30px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--serif);font-size:20px;letter-spacing:.08em}
+    .brand-mark{color:var(--gold);font-size:21px}
+    nav{display:flex;gap:30px;color:#c4beb4;font-size:13px}
+    nav a{text-decoration:none;transition:color .2s}nav a:hover{color:var(--gold)}
+    .hero{position:relative;min-height:570px;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 77% 46%,#493642 0,#24232d 29%,#11131a 67%)}
+    .hero:before,.hero:after{content:"";position:absolute;pointer-events:none}
+    .hero:before{inset:0;background:linear-gradient(90deg,#11131a 4%,#11131ae8 37%,#11131a2b 76%,#11131a55),linear-gradient(0deg,#11131a 0%,transparent 32%)}
+    .hero:after{width:520px;height:520px;right:4%;top:6%;border:1px solid #d8bd8814;border-radius:50%;box-shadow:0 0 0 42px #d8bd8808,0 0 0 84px #d8bd8805}
+    .bell-art{position:absolute;width:min(58vw,690px);right:3%;top:18px;opacity:.78;filter:drop-shadow(0 24px 70px #0009)}
+    .hero-inner{position:relative;z-index:1;max-width:1180px;margin:auto;padding:112px 30px 105px}
+    .eyebrow{color:var(--gold);font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-family:var(--serif);font-size:clamp(42px,6.2vw,76px);font-weight:400;line-height:1.25;letter-spacing:-.045em;margin:21px 0 18px;max-width:650px}
+    .hero-copy{color:#c1bbb1;max-width:490px;font-family:var(--serif);font-size:17px;line-height:1.9}
+    .hero-actions{display:flex;align-items:center;gap:24px;margin-top:34px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:13px 20px;border:1px solid var(--gold);background:var(--gold);color:#17171b;text-decoration:none;font-size:13px;font-weight:700;transition:transform .2s,background .2s}
+    .button:hover{transform:translateY(-2px);background:#ead3a4}
+    .text-link{color:#e0d8ca;text-decoration:none;font-size:13px}.text-link span{color:var(--gold);padding-left:7px}
+    .hero-note{position:absolute;right:30px;bottom:44px;color:#c7bda9;font:12px var(--serif);letter-spacing:.12em;writing-mode:vertical-rl}
+    .section{max-width:1180px;margin:auto;padding:85px 30px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}
+    .section h2{font:400 clamp(29px,4vw,42px)/1.3 var(--serif);margin:10px 0 0;letter-spacing:-.03em}
+    .section-intro{color:var(--muted);font:14px var(--serif);margin:0 0 5px}
+    .featured{display:grid;grid-template-columns:1.06fr .94fr;min-height:330px;border:1px solid var(--line);background:linear-gradient(120deg,#1b1b22,#15161c);text-decoration:none;transition:border-color .2s,transform .2s}
+    .featured:hover{border-color:#d8bd8877;transform:translateY(-3px)}
+    .featured+.featured{margin-top:18px}
+    .featured.second .cover{background:radial-gradient(ellipse at 50% 80%,#a9544766,#402d3d 52%,#201b29)}
+    .cover{position:relative;overflow:hidden;min-height:300px;background:radial-gradient(ellipse at 50% 80%,#4d3944,#252530 54%,#171922)}
+    .cover:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(0deg,#12131a 4%,transparent)}
+    .cover svg{position:absolute;width:100%;height:100%;inset:0}
+    .cover-caption{position:absolute;z-index:1;left:28px;bottom:21px;color:#e6d6b8;font:12px var(--serif);letter-spacing:.14em}
+    .feature-copy{padding:38px 42px;display:flex;flex-direction:column;justify-content:center}
+    .series{color:var(--gold);font-size:10px;letter-spacing:.22em}
+    .feature-copy h3{font:400 36px/1.3 var(--serif);margin:12px 0 10px}
+    .feature-copy p{color:#bcb6ad;font:15px/1.9 var(--serif);margin-bottom:22px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .tag{padding:5px 9px;border:1px solid #ffffff25;color:#c8c0b4;font-size:11px}
+    .feature-bottom{display:flex;justify-content:space-between;align-items:center;color:#c6bda9;font-size:12px}
+    .feature-bottom strong{color:var(--gold);font-size:13px;font-weight:400}
+    .shelf{padding-top:10px}
+    .coming{display:flex;align-items:center;gap:20px;padding:23px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:#aaa49b}
+    .coming-icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid #ffffff25;color:var(--gold);font-size:21px}
+    .coming strong{display:block;color:#e1d9cb;font:16px var(--serif);font-weight:400}.coming span{font-size:12px}
+    .manifesto{border-top:1px solid var(--line);background:linear-gradient(90deg,#17171e,#1c1a20,#17171e)}
+    .manifesto-inner{max-width:1180px;margin:auto;padding:57px 30px;display:flex;justify-content:space-between;align-items:center;gap:36px}
+    .manifesto h2{font:400 25px var(--serif);margin:0 0 8px}.manifesto p{color:var(--muted);font:13px var(--serif);margin:0}
+    .manifesto-mark{color:#d8bd8866;font:46px var(--serif)}
+    footer{max-width:1180px;margin:auto;padding:23px 30px 32px;display:flex;justify-content:space-between;color:#817d77;font-size:11px;letter-spacing:.04em}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+    @media(max-width:700px){.site-header{height:68px;padding:0 20px}nav{gap:16px;font-size:12px}.brand{font-size:17px}.hero{min-height:600px}.bell-art{width:100vw;right:-22%;top:95px;opacity:.55}.hero-inner{padding:120px 22px 120px}.hero:before{background:linear-gradient(90deg,#11131aeF,#11131a88 72%,#11131a55),linear-gradient(0deg,#11131a 0%,transparent 45%)}.hero-note{right:20px;bottom:22px}.section{padding:62px 20px}.section-head{display:block}.section-intro{margin-top:12px}.featured{grid-template-columns:1fr}.cover{min-height:235px}.feature-copy{padding:28px 25px}.feature-copy h3{font-size:31px}.manifesto-inner{padding:42px 20px}.manifesto-mark{font-size:34px}footer{padding:20px;gap:16px;flex-wrap:wrap}}
+    @media(max-width:420px){nav{gap:11px}nav a:last-child{display:none}.hero-actions{align-items:flex-start;flex-direction:column;gap:16px}.feature-bottom{gap:12px;align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="밤의 서가 첫 화면"><span class="brand-mark">✦</span>밤의 서가</a>
+    <nav aria-label="주요 메뉴"><a href="#stories">이야기</a><a href="#about">서가 소개</a></nav>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <svg class="bell-art" viewBox="0 0 700 600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="bellMetal" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d2b48a"/><stop offset=".45" stop-color="#79645f"/><stop offset="1" stop-color="#302c38"/></linearGradient><radialGradient id="glow"><stop stop-color="#dbbd8b" stop-opacity=".3"/><stop offset="1" stop-color="#dbbd8b" stop-opacity="0"/></radialGradient></defs>
+        <circle cx="360" cy="302" r="270" fill="url(#glow)"/>
+        <path d="M352 89c-22 0-39 17-39 39v26c-76 20-127 88-127 169v94l-37 55h404l-37-55v-94c0-81-51-149-127-169v-26c0-22-17-39-37-39z" fill="url(#bellMetal)" stroke="#d3b98f" stroke-opacity=".7" stroke-width="3"/>
+        <path d="M252 288c15-50 53-82 104-92m-52 237c24 20 76 20 100 0" fill="none" stroke="#edd5a8" stroke-opacity=".38" stroke-width="5"/>
+        <path d="M301 470c5 38 24 58 51 58s46-20 51-58" fill="#55464c" stroke="#cbb18b" stroke-width="3"/>
+        <path d="M352 528v30" stroke="#d0b88f" stroke-width="6" stroke-linecap="round"/>
+        <g fill="#e1ccaa" opacity=".65"><circle cx="260" cy="216" r="3"/><circle cx="441" cy="244" r="2"/><circle cx="475" cy="358" r="3"/><circle cx="226" cy="376" r="2"/><circle cx="371" cy="168" r="2"/></g>
+      </svg>
+      <div class="hero-inner">
+        <div class="eyebrow">Stories shaped by your choices</div>
+        <h1 id="hero-title">이야기는<br>선택에서 시작돼요.</h1>
+        <p class="hero-copy">한 번의 선택이 장면을 바꾸고,<br>당신만의 결말로 이어지는 이야기 게임 서가.</p>
+        <div class="hero-actions"><a class="button" href="#stories">첫 번째 이야기 만나기 <span aria-hidden="true">↗</span></a><a class="text-link" href="#about">밤의 서가 둘러보기 <span>↓</span></a></div>
+      </div>
+      <div class="hero-note">어떤 이야기는 문을 연 뒤에야 시작된다</div>
+    </section>
+    <section class="section" id="stories" aria-labelledby="stories-title">
+      <div class="section-head"><div><div class="eyebrow">THE STORY COLLECTION · 001—002</div><h2 id="stories-title">이야기 서가</h2></div><p class="section-intro">마음에 걸리는 제목을 열어, 이야기 속으로 들어가 보세요.</p></div>
+      <a class="featured" href="./night-threshold.html" aria-label="밤의 문턱 이야기를 시작합니다">
+        <div class="cover" aria-hidden="true">
+          <svg viewBox="0 0 700 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="coverSky" x2="0" y2="1"><stop stop-color="#252633"/><stop offset=".65" stop-color="#59404a"/><stop offset="1" stop-color="#161820"/></linearGradient><linearGradient id="coverFog" x2="0" y2="1"><stop stop-color="#c4a8a0" stop-opacity="0"/><stop offset="1" stop-color="#c4a8a0" stop-opacity=".34"/></linearGradient></defs><rect width="700" height="380" fill="url(#coverSky)"/><circle cx="540" cy="85" r="43" fill="#e2d1b3" opacity=".68"/><path d="M0 254 130 132l117 104L355 91l137 140 101-91 107 109v131H0z" fill="#252630"/><path d="M0 265q140-34 280 0t260-2q90-20 160 2v115H0z" fill="url(#coverFog)"/><path d="M310 288V124l40-53 40 53v164z" fill="#252630" stroke="#a08a85" stroke-width="4"/><path d="M290 126h120l-60-69z" fill="#39313d" stroke="#ad8b85" stroke-width="4"/><path d="M337 160h26v58h-26z" fill="#d4b77d" opacity=".8"/><path d="M0 340q175-30 350 0t350 0v40H0z" fill="#0d1017" opacity=".5"/></svg>
+          <div class="cover-caption">안개골 기록 · 01</div>
+        </div>
+        <div class="feature-copy"><div class="series">INTERACTIVE STORY · MYSTERY</div><h3>밤의 문턱</h3><p>오래전 폐쇄된 마을에서 도착한 편지 한 통. 자정의 종이 울리면, 대답하지 말아야 할 이름이 있다.</p><div class="tags"><span class="tag">미스터리</span><span class="tag">판타지</span><span class="tag">공포</span><span class="tag">선택형 이야기</span></div><div class="feature-bottom"><span>당신의 선택으로 달라지는 이야기</span><strong>이야기 시작하기　↗</strong></div></div>
+      </a>
+      <a class="featured second" href="./space-bunsik.html" aria-label="새벽 2시, 우주 분식 이야기를 시작합니다">
+        <div class="cover" aria-hidden="true">
+          <svg viewBox="0 0 700 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="spaceSky" x2="0" y2="1"><stop stop-color="#252333"/><stop offset=".65" stop-color="#68434c"/><stop offset="1" stop-color="#181820"/></linearGradient><radialGradient id="steam"><stop stop-color="#ffc27e" stop-opacity=".3"/><stop offset="1" stop-color="#ffc27e" stop-opacity="0"/></radialGradient></defs><rect width="700" height="380" fill="url(#spaceSky)"/><circle cx="532" cy="84" r="43" fill="#f5dfb1" opacity=".78"/><circle cx="350" cy="220" r="185" fill="url(#steam)"/><g fill="#f4d6a5" opacity=".8"><circle cx="124" cy="74" r="3"/><circle cx="205" cy="127" r="2"/><circle cx="583" cy="170" r="3"/><circle cx="462" cy="56" r="2"/></g><path d="M184 238q166 73 332 0l-35 74q-131 50-262 0z" fill="#332a35" stroke="#e2b784" stroke-width="5"/><path d="M195 237q155 55 310 0" fill="none" stroke="#f6c784" stroke-width="7"/><path d="M260 212q-28-54 12-84m45 81q-25-60 14-97m46 97q-20-51 19-81" fill="none" stroke="#f5d6c4" stroke-opacity=".6" stroke-width="6" stroke-linecap="round"/><circle cx="315" cy="224" r="13" fill="#de8d67"/><circle cx="379" cy="235" r="12" fill="#de8d67"/><circle cx="430" cy="215" r="14" fill="#de8d67"/><path d="M325 222q24-16 43 2m-7 1q22-16 42 0" fill="none" stroke="#231d26" stroke-width="4" stroke-linecap="round"/><path d="M340 252q25 16 49-1" fill="none" stroke="#211c24" stroke-width="4" stroke-linecap="round"/><path d="M0 340q175-30 350 0t350 0v40H0z" fill="#0d1017" opacity=".5"/></svg>
+          <div class="cover-caption">은하 분식 · 야간 영업</div>
+        </div>
+        <div class="feature-copy"><div class="series">INTERACTIVE STORY · ABSURD COMEDY</div><h3>새벽 2시, 우주 분식</h3><p>달토끼, 미래 금붕어, 말하는 떡볶이. 우주 분식집의 첫 야간 근무가 시작된다. 주문을 잘못 받으면 가게가 리뷰 한 장으로 납작해질 수도 있다.</p><div class="tags"><span class="tag">기괴한 코미디</span><span class="tag">황당함</span><span class="tag">게임 오버 있음</span></div><div class="feature-bottom"><span>손님 셋, 주문 도장 셋</span><strong>근무 시작하기　↗</strong></div></div>
+      </a>
+    </section>
+    <section class="section shelf" aria-label="다음 이야기 안내"><div class="coming"><div class="coming-icon" aria-hidden="true">✧</div><div><strong>다음 이야기를 준비하고 있어요</strong><span>새로운 세계와 선택이 이 서가에 찾아올 예정입니다.</span></div></div></section>
+    <section class="manifesto" id="about"><div class="manifesto-inner"><div><h2>한 권씩, 다른 세계로</h2><p>밤의 서가는 선택과 이야기로 만들어지는 작은 게임들을 모읍니다.</p></div><div class="manifesto-mark" aria-hidden="true">❧</div></div></section>
+  </main>
+  <footer><span>© 밤의 서가</span><span>당신이 고른 길이, 이야기의 다음 장이 됩니다.</span></footer>
+</body>
+</html>
